@@ -1,3 +1,18 @@
+# Run in Unbuntu : 
+    ```
+    sudo apt-get -y install python-virtualenv mysql-server mysql-client python3 python3-dev python3-pip python-mysqldb libmysqlclient-dev
+    virtualenv --python=/usr/bin/python3 env
+    source env/bin/activate
+    pip3 install -r requirements.txt
+    ```
+
+# Run in Windows : 
+    ```
+    virtualenv venv
+    venv\Scripts\activate
+    pip install -r requirements.txt
+    ```
+
 
 ### First App Test 
 - Client id : ```BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu```
