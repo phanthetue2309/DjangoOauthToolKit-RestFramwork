@@ -1,0 +1,34 @@
+curl -X POST -d "grant_type=password&username=tue&password=Thetue2309" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
+
+Scope read and write instruments : 
+curl -X POST -d "grant_type=password&username=tue&password=Thetue2309&scope= instruments:read instruments:write" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
+
+Scope read instruments
+curl -X POST -d "grant_type=password&username=tue&password=Thetue2309&scope= instruments:read" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
+
+Scope read albums read write instruments
+curl -X POST -d "grant_type=password&username=tue&password=Thetue2309&scope= albums:read albums:write instruments:read" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
+
+
+----- New Update -----
+
+Create access token has scope : 
+curl -X POST -d "grant_type=password&username=tuepro123@gmail.com&password=Thetue2309" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
+
+curl -X POST -d "grant_type=password&username=tuepro123@gmail.com&password=Thetue2309&scope=albums:read albums:write instruments:read" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
+-
+Account normal using scope :
+curl -X POST -d "grant_type=password&username=testuser1@gmail.com&password=Thetue2309&scope=albums:read albums:write instruments:read" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
+
+curl -X POST -d "grant_type=password&username=testuser1@gmail.com&password=Thetue2309" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
+
+
+----- Test Another Scope ------
+curl -X POST -d "grant_type=password&username=tuepro123@gmail.com&password=Thetue2309&scope=instrument_test:response_test" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
+curl -X POST -d "grant_type=password&username=tuepro123@gmail.com&password=Thetue2309&scope=instrument_test:response_test instrument_test:list" -u"BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu:FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl" http://localhost:8000/o/token/
+
+
+
+Client id for new :
+CLIENT ID = xH74ybr3GzosDlFjCWDixKGrOcQbRTArB9mpp5Xl
+CLIENT SECRET = nVxnzTjHWAQfNxvvPmccJFbgtHYvfRPxrd1YjZsph8BrTRmE9Ux8Gx3esCWcPkivRLFxsB054bCpxNGqZHQrYm3FKL4a2uevVBT77s0WEZ3rlPhTRl4Tzz5KuYzKJzTv

@@ -1,0 +1,8 @@
+python manage.py createsuperuser
+email : tuepro123@gmail.com
+pass : Thetue2309 ( all users other is same password)
+
+Normal account :
+email : testuser1@gmail.com
+pass : Thetue2309
+
