@@ -4,6 +4,8 @@
     virtualenv --python=/usr/bin/python3 env
     source env/bin/activate
     pip3 install -r requirements.txt
+    python manage.py makemigrations
+    python manage.py migrate
     ```
 
 # Run in Windows : 
@@ -11,6 +13,13 @@
     virtualenv venv
     venv\Scripts\activate
     pip install -r requirements.txt
+    python manage.py makemigrations
+    python manage.py migrate
+    ```
+
+## Create action by permission using cmd :
+    ```
+    python manage.py create_permisson
     ```
 
 
@@ -24,7 +33,6 @@
 - Application and User is : 
     + One user have many applications
     
-
 - Run in cmd : 
     ```
   
@@ -40,6 +48,7 @@
         "refresh_token": "NijnaCmrSuLfbp0GvKsM9T9e6roq4S"
     }
     ```
+  
 - Then use this : 
     ```
     curl -H "Authorization: Bearer <your_access_token>" http://localhost:8000/users/
