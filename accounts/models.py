@@ -2,22 +2,15 @@ from django.conf import settings
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import PermissionsMixin
+from oauth2_provider.models import AbstractApplication
 from django.db import models
 import uuid
-
-
-class Permission(models.Model):
-    scope = models.CharField(max_length=255, blank=True, unique=True)
-    description = models.CharField(max_length=255, unique=True, null=True)
-
-    def __str__(self):
-        return f'{self.scope} ({self.description})'
 
 
 class Role(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField()
-    permissions = models.ManyToManyField(Permission, null=True, related_name="roles")
+    scopes = models.TextField(blank=True)
     is_private = models.BooleanField(default=False)
 
     def __str__(self):
@@ -106,3 +99,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     def set_password(self, raw_password):
         self.password = make_password(password=raw_password, salt=settings.SECRET_KEY)
         self._password = raw_password
+
+
+class MyApplication(AbstractApplication):
+    scopes = models.TextField(blank=True, null=True)

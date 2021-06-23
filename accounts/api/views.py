@@ -7,8 +7,8 @@ from .serializer import CreateUserSerializer, UserSerializer
 from ..models import *
 
 # Client ID and AccessToken get from Application create in db
-CLIENT_ID = 'BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu'
-CLIENT_SECRET = 'FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl '
+CLIENT_ID = 'oiwCHZCic0xu7UxwI63KYq9uvbTxMw75TsAmnXxa'
+CLIENT_SECRET = 'Q1kztMKc6bImbEMsjqqAvPPvtP4O5jS0NZMs7zhP9jrkn5cBVIrY8zwJ2L7P1QsSFZ8SjjcmFhV7BBao2RFhMHTtXqDJAQHvW9uMCyNV8u3FFt1kLECYmkjyPF8lr6kS'
 
 
 @api_view(['POST'])
@@ -59,26 +59,26 @@ def login(request):
             'password': request.data['password'],
             'client_id': CLIENT_ID,
             'client_secret': CLIENT_SECRET,
-            'scope': "albums:read albums:write instruments:read"
+            'scope': "album:create"
         },
     )
     return Response(r.json())
 
-    # print(r.json())  # print full data in json
-    content = r.json()
-    # print(content.get('access_token'))  # print access token
-    user = User.objects.get(email=request.data['email'])
-    # print(user)  # print user
-    data = {
-        'id': str(user.id),
-        'email': user.email,
-        'access_token': content.get('access_token'),
-        'refresh_token': content.get('refresh_token'),
-        'scope': content.get('scope'),
-        'timestamp': user.timestamp,
-        'role': user.role,
-    }
-    return JsonResponse(data)
+    # # print(r.json())  # print full data in json
+    # content = r.json()
+    # # print(content.get('access_token'))  # print access token
+    # user = User.objects.get(email=request.data['email'])
+    # # print(user)  # print user
+    # data = {
+    #     'id': str(user.id),
+    #     'email': user.email,
+    #     'access_token': content.get('access_token'),
+    #     'refresh_token': content.get('refresh_token'),
+    #     'scope': content.get('scope'),
+    #     'timestamp': user.timestamp,
+    #     'role': user.role,
+    # }
+    # return JsonResponse(data)
 
 
 @api_view(['POST'])

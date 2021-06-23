@@ -20,3 +20,13 @@ def get_api_actions() -> list:
             )
     api_actions = list(set(api_actions))
     return api_actions
+
+
+def read_file_json(file_path: str) -> dict:
+    """
+    Read file.json and return a dict of data
+    """
+    import json
+    with open(file_path, "r") as json_file:
+        data: dict = json.load(json_file)
+    return data
