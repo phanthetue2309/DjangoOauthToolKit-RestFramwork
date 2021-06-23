@@ -1,0 +1,15 @@
+{
+    "album:create": "Create object of Album",
+    "album:destroy": "Destroy object of Album",
+    "album:list": "List object of Album",
+    "album:partial_update": "Partial Update object of Album",
+    "album:retrieve": "Retrieve object of Album",
+    "album:update": "Update object of Album",
+    "instrument:create": "Create object of Instrument",
+    "instrument:destroy": "Destroy object of Instrument",
+    "instrument:list": "List object of Instrument",
+    "instrument:partial_update": "Partial Update object of Instrument",
+    "instrument:response_test": "Response Test object of Instrument",
+    "instrument:retrieve": "Retrieve object of Instrument",
+    "instrument:update": "Update object of Instrument"
+}

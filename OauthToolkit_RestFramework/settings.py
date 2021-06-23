@@ -37,11 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'oauth2_provider',
+    'accounts',
     'rest_framework',
     'corsheaders',
     'Album',
     'Instrument',
-    'accounts',
     'django_extensions'
 ]
 
@@ -74,7 +74,8 @@ CORS_ORIGIN_ALLOW_ALL = True
 OAUTH2_PROVIDER = {
     "SCOPES_BACKEND_CLASS": "OauthToolkit_RestFramework.scopes.ScopesBackend",
 }
-
+OAUTH2_PROVIDER_APPLICATION_MODEL = 'accounts.MyApplication'
+# OAUTH2_PROVIDER_APPLICATION_MODEL = 'oauth2_provider.Application'
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',  # To keep the Browsable API
     'oauth2_provider.backends.OAuth2Backend',
@@ -151,3 +152,4 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+SCOPES_JSON_PATH = BASE_DIR / "scopes.json"

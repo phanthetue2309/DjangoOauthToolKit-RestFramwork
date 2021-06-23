@@ -8,8 +8,8 @@ from ..models import *
 from api_base.views.token import TokenView
 
 # Client ID and AccessToken get from Application create in db
-CLIENT_ID = 'BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu'
-CLIENT_SECRET = 'FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl'
+CLIENT_ID = 'oiwCHZCic0xu7UxwI63KYq9uvbTxMw75TsAmnXxa'
+CLIENT_SECRET = 'Q1kztMKc6bImbEMsjqqAvPPvtP4O5jS0NZMs7zhP9jrkn5cBVIrY8zwJ2L7P1QsSFZ8SjjcmFhV7BBao2RFhMHTtXqDJAQHvW9uMCyNV8u3FFt1kLECYmkjyPF8lr6kS'
 
 
 @api_view(['POST'])
@@ -58,8 +58,7 @@ def login(request):
             'scope': scope
         },
     )
-    # request =
-    # r = token_view.post(request)
+    return Response(r.json())
 
     content = r.json()
 

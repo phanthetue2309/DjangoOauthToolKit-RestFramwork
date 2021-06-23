@@ -25,6 +25,16 @@ def get_api_actions() -> list:
     return api_actions
 
 
+def read_file_json(file_path: str) -> dict:
+    """
+    Read file.json and return a dict of data
+    """
+    import json
+    with open(file_path, "r") as json_file:
+        data: dict = json.load(json_file)
+    return data
+
+
 def convert_string_array_to_list(array_string) -> list:
     list_convert = ast.literal_eval(array_string)
     list_convert = [n.strip() for n in list_convert]
