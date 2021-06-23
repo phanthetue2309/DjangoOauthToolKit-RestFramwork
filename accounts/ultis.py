@@ -1,3 +1,6 @@
+import ast
+
+
 def get_api_actions() -> list:
     from OauthToolkit_RestFramework import api_router
     from rest_framework.routers import SimpleRouter
@@ -30,3 +33,14 @@ def read_file_json(file_path: str) -> dict:
     with open(file_path, "r") as json_file:
         data: dict = json.load(json_file)
     return data
+
+
+def convert_string_array_to_list(array_string) -> list:
+    list_convert = ast.literal_eval(array_string)
+    list_convert = [n.strip() for n in list_convert]
+    return list_convert
+
+
+def convert_list_string_to_space(list_return) -> str:
+    list_to_str = ' '.join(map(str, list_return))
+    return list_to_str

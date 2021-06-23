@@ -5,6 +5,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from .serializer import CreateUserSerializer, UserSerializer
 from ..models import *
+from api_base.views.token import TokenView
 
 # Client ID and AccessToken get from Application create in db
 CLIENT_ID = 'oiwCHZCic0xu7UxwI63KYq9uvbTxMw75TsAmnXxa'
@@ -24,22 +25,6 @@ def register(request):
     if serializer.is_valid():
         # If it is valid, save the data (creates a user).
         serializer.save()  # save success now we have to generate a key
-        # Then we get a token for the created user.
-        # This could be done differently
-
-        # r = requests.post('http://127.0.0.1:8000/o/token/',
-        #                   data={
-        #                       'grant_type': 'password',
-        #                       'username': request.data['email'],
-        #                       'password': request.data['password'],
-        #                       'client_id': CLIENT_ID,
-        #                       'client_secret': CLIENT_SECRET,
-        #                       'scope': "albums:read albums:write instruments:read"
-        #                   },
-        #                   )
-
-        # Do not need to return access key
-        # return Response(r.json())
         return Response(serializer.data)
     return Response(serializer.errors)
 
@@ -51,6 +36,17 @@ def login(request):
     Gets tokens with email and password. Input should be in the format:
     {"email": "email", "password": "1234abcd"}
     """
+    scope = ""
+    try:
+        user = User.objects.get(email=request.data['email'])
+        role = Role.objects.get(name=user.role)
+        scopes = role.permissions.all()
+        for x in scopes:
+            scope += x.scope + " "
+    except Exception as e:
+        return e
+
+    token_view = TokenView
     r = requests.post(
         'http://127.0.0.1:8000/o/token/',
         data={
@@ -59,26 +55,23 @@ def login(request):
             'password': request.data['password'],
             'client_id': CLIENT_ID,
             'client_secret': CLIENT_SECRET,
-            'scope': "album:create"
+            'scope': scope
         },
     )
     return Response(r.json())
 
-    # # print(r.json())  # print full data in json
-    # content = r.json()
-    # # print(content.get('access_token'))  # print access token
-    # user = User.objects.get(email=request.data['email'])
-    # # print(user)  # print user
-    # data = {
-    #     'id': str(user.id),
-    #     'email': user.email,
-    #     'access_token': content.get('access_token'),
-    #     'refresh_token': content.get('refresh_token'),
-    #     'scope': content.get('scope'),
-    #     'timestamp': user.timestamp,
-    #     'role': user.role,
-    # }
-    # return JsonResponse(data)
+    content = r.json()
+
+    user = User.objects.get(email=request.data['email'])
+    data = {
+        'id': str(user.id),
+        'email': user.email,
+        'access_token': content.get('access_token'),
+        'refresh_token': content.get('refresh_token'),
+        'scope': content.get('scope'),
+        'timestamp': user.timestamp,
+    }
+    return JsonResponse(data)
 
 
 @api_view(['POST'])
