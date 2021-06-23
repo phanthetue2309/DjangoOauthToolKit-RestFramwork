@@ -1,3 +1,6 @@
+import ast
+
+
 def get_api_actions() -> list:
     from OauthToolkit_RestFramework import api_router
     from rest_framework.routers import SimpleRouter
@@ -20,3 +23,14 @@ def get_api_actions() -> list:
             )
     api_actions = list(set(api_actions))
     return api_actions
+
+
+def convert_string_array_to_list(array_string) -> list:
+    list_convert = ast.literal_eval(array_string)
+    list_convert = [n.strip() for n in list_convert]
+    return list_convert
+
+
+def convert_list_string_to_space(list_return) -> str:
+    list_to_str = ' '.join(map(str, list_return))
+    return list_to_str
