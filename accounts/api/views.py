@@ -46,7 +46,6 @@ def login(request):
         return e
 
     r = requests.post(
-        ''
         'http://127.0.0.1:8000/o/token/',
         data={
             'grant_type': 'password',
@@ -57,7 +56,6 @@ def login(request):
             'scope': scope
         },
     )
-    return Response(r.json())
 
     content = r.json()
 
@@ -69,7 +67,6 @@ def login(request):
         'refresh_token': content.get('refresh_token'),
         'scope': content.get('scope'),
         'timestamp': user.timestamp,
-        'role': user.role,
     }
     return JsonResponse(data)
 
