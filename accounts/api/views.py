@@ -5,6 +5,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from .serializer import CreateUserSerializer, UserSerializer
 from ..models import *
+from api_base.views.token import TokenView
 
 # Client ID and AccessToken get from Application create in db
 CLIENT_ID = 'BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu'
@@ -45,6 +46,7 @@ def login(request):
     except Exception as e:
         return e
 
+    token_view = TokenView
     r = requests.post(
         'http://127.0.0.1:8000/o/token/',
         data={
@@ -56,6 +58,8 @@ def login(request):
             'scope': scope
         },
     )
+    # request =
+    # r = token_view.post(request)
 
     content = r.json()
 
