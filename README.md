@@ -1,26 +1,26 @@
 # Run in Unbuntu : 
-    ```
+
     sudo apt-get -y install python-virtualenv mysql-server mysql-client python3 python3-dev python3-pip python-mysqldb libmysqlclient-dev
     virtualenv --python=/usr/bin/python3 env
     source env/bin/activate
     pip3 install -r requirements.txt
     python manage.py makemigrations
     python manage.py migrate
-    ```
+
 
 # Run in Windows : 
-    ```
+
     virtualenv venv
     venv\Scripts\activate
     pip install -r requirements.txt
     python manage.py makemigrations
     python manage.py migrate
-    ```
+
 
 ## Create action by permission using cmd :
-    ```
+
     python manage.py create_permisson
-    ```
+
 
 
 ### First App Test 

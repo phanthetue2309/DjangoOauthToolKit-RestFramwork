@@ -8,8 +8,10 @@ from ..models import *
 from api_base.views.token import TokenView
 
 # Client ID and AccessToken get from Application create in db
-CLIENT_ID = 'oiwCHZCic0xu7UxwI63KYq9uvbTxMw75TsAmnXxa'
-CLIENT_SECRET = 'Q1kztMKc6bImbEMsjqqAvPPvtP4O5jS0NZMs7zhP9jrkn5cBVIrY8zwJ2L7P1QsSFZ8SjjcmFhV7BBao2RFhMHTtXqDJAQHvW9uMCyNV8u3FFt1kLECYmkjyPF8lr6kS'
+from ..ultis import convert_string_array_to_list, convert_list_string_to_space
+
+CLIENT_ID = 'BwRi7vofWyieSaGILcQPfm9ytq6AUrlmjIIt1Sbu'
+CLIENT_SECRET = 'FRgi0uEZKj79EfBifp2xk1KSbUqnmVEij88WW3jQXgmTXNOiMlEyuts5YNqzYHHKWG79EqpZjF8erXNCtWaJAxdnGRbOu1FiLXXjueXbHg3t8mvbxvxBYlbsxOlSOdHl'
 
 
 @api_view(['POST'])
@@ -37,12 +39,13 @@ def login(request):
     {"email": "email", "password": "1234abcd"}
     """
     scope = ""
+    user = None
     try:
         user = User.objects.get(email=request.data['email'])
         role = Role.objects.get(name=user.role)
-        scopes = role.permissions.all()
-        for x in scopes:
-            scope += x.scope + " "
+        scopes = role.scopes
+        scopes = convert_string_array_to_list(scopes)
+        scope = convert_list_string_to_space(scopes)
     except Exception as e:
         return e
 
@@ -55,20 +58,18 @@ def login(request):
             'password': request.data['password'],
             'client_id': CLIENT_ID,
             'client_secret': CLIENT_SECRET,
-            'scope': scope
+            'scope': 'album:list album:create'
         },
     )
-    return Response(r.json())
+    # return Response(r.json())
 
     content = r.json()
 
-    user = User.objects.get(email=request.data['email'])
     data = {
         'id': str(user.id),
         'email': user.email,
         'access_token': content.get('access_token'),
         'refresh_token': content.get('refresh_token'),
-        'scope': content.get('scope'),
         'timestamp': user.timestamp,
     }
     return JsonResponse(data)

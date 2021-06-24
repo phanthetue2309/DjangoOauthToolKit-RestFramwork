@@ -24,7 +24,6 @@ class TokenPermissionWithAction(BasePermission):
             }
             for alt in required_scopes[m]:
                 if token.is_valid(alt):
-                    print("check")
                     return True
             return False
 
