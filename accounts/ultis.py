@@ -44,3 +44,10 @@ def convert_string_array_to_list(array_string) -> list:
 def convert_list_string_to_space(list_return) -> str:
     list_to_str = ' '.join(map(str, list_return))
     return list_to_str
+
+
+def convert_array_to_dict(array_key, array_value) -> dict:
+    array_key = list(set(array_key))
+    array_value = list(set(array_value))
+    dict_return = dict(zip(array_key, array_value))
+    return dict_return

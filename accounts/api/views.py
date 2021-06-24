@@ -58,7 +58,7 @@ def login(request):
             'password': request.data['password'],
             'client_id': CLIENT_ID,
             'client_secret': CLIENT_SECRET,
-            'scope': 'album:list album:create'
+            'scope': scope
         },
     )
     # return Response(r.json())
